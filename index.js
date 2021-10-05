@@ -20,7 +20,13 @@ class PagifyContent extends HTMLElement {
         this.container = this.shadowRoot.querySelector('.root');
         this.placeholder = this.shadowRoot.querySelector('.placeholder');
         this.update();
+        // Read the current page from out attributes.
+        setTimeout(() => {
+            var _a;
+            this.currentPage = parseInt((_a = this.getAttribute('currentPage')) !== null && _a !== void 0 ? _a : '') || 0;
+        });
     }
+    static get observedAttributes() { return ['currentPage']; }
     get pageCount() {
         return Math.ceil(this.scrollHeight / this.clientHeight);
     }
@@ -30,6 +36,7 @@ class PagifyContent extends HTMLElement {
     }
     set currentPage(value) {
         this.scrollTop = this.clientHeight * value;
+        this.setAttribute('currentPage', value + '');
     }
     hasNext() { return this.currentPage !== this.pageCount - 1; }
     hasPrevious() { return this.currentPage !== 0; }
@@ -55,6 +62,13 @@ class PagifyContent extends HTMLElement {
         return `
             <slot></slot>
         `;
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case 'currentPage':
+                this.currentPage = parseInt(newValue);
+                break;
+        }
     }
 }
 customElements.define('pagify-content', PagifyContent);
