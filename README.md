@@ -5,6 +5,8 @@ Pagify is a simple web component for pagifying content. At the moment it's prett
 
 This library defines a simple web component `pagify-content` for pagifying some html. **Note:** the component will fill available space, so make sure the element it's inside has a height.
 
+Examples available [here](https://fallaciousreasoning.github.io/pagify-content/test.html)
+
 ```html
 <!-- Render the second page of the following html -->
 <pagify-content currentPage="2">
