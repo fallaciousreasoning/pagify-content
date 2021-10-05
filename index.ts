@@ -3,7 +3,7 @@ template.innerHTML = `
 <style>
     :host {
         display: block;
-        overflow: auto;
+        overflow: hidden;
         height: 100%;
     }
 </style>
