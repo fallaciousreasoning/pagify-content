@@ -19,12 +19,30 @@ class PagifyContent extends HTMLElement {
         this.container = this.shadowRoot.querySelector('.root');
         this.update();
     }
+    get pageCount() {
+        return Math.ceil(this.container.clientHeight / this.clientHeight);
+    }
+    get currentPage() {
+        const scrollTop = this.scrollTop;
+        return Math.ceil(scrollTop / this.clientHeight);
+    }
+    set currentPage(value) {
+        this.scrollTop = this.clientHeight * value;
+    }
+    hasNext() { return this.currentPage !== this.pageCount - 1; }
+    hasPrevious() { return this.currentPage !== 0; }
+    previousPage() {
+        if (!this.hasPrevious())
+            return;
+        this.currentPage--;
+    }
+    nextPage() {
+        if (!this.hasNext())
+            return;
+        this.currentPage++;
+    }
     update() {
         this.container.innerHTML = this.render();
-    }
-    renderStyles() {
-        return `
-        `;
     }
     render() {
         return `
