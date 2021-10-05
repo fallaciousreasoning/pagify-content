@@ -4,6 +4,8 @@
   "description": "A typescript utility for paginating a dom tree",
   "main": "index.ts",
   "scripts": {
+    "dev": "tsc --watch",
+    "build": "typescript",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

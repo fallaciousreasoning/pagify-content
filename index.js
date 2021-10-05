@@ -1,3 +1,4 @@
+"use strict";
 const template = document.createElement('template');
 template.innerHTML = `
 <style>
@@ -9,35 +10,26 @@ template.innerHTML = `
 </style>
 <div class="root"></div>
 `;
-
 class PagifyContent extends HTMLElement {
-    container: HTMLDivElement;
     constructor() {
         super();
-
         this.attachShadow({ mode: 'open' });
         const content = template.content.cloneNode(true);
-        this.shadowRoot!.append(content);
-
-        this.container = this.shadowRoot!.querySelector('.root') as HTMLDivElement;
-
+        this.shadowRoot.append(content);
+        this.container = this.shadowRoot.querySelector('.root');
         this.update();
     }
-
     update() {
         this.container.innerHTML = this.render();
     }
-
     renderStyles() {
         return `
-        `
+        `;
     }
-
     render() {
         return `
             <slot></slot>
         `;
     }
 }
-
 customElements.define('pagify-content', PagifyContent);
