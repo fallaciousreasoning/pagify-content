@@ -9,6 +9,7 @@ template.innerHTML = `
     }
 </style>
 <div class="root"></div>
+<div class="placeholder"></div>
 `;
 class PagifyContent extends HTMLElement {
     constructor() {
@@ -17,10 +18,11 @@ class PagifyContent extends HTMLElement {
         const content = template.content.cloneNode(true);
         this.shadowRoot.append(content);
         this.container = this.shadowRoot.querySelector('.root');
+        this.placeholder = this.shadowRoot.querySelector('.placeholder');
         this.update();
     }
     get pageCount() {
-        return Math.ceil(this.container.clientHeight / this.clientHeight);
+        return Math.ceil(this.scrollHeight / this.clientHeight);
     }
     get currentPage() {
         const scrollTop = this.scrollTop;
@@ -43,6 +45,11 @@ class PagifyContent extends HTMLElement {
     }
     update() {
         this.container.innerHTML = this.render();
+        // Wait for the page to layout.
+        setTimeout(() => {
+            const placeholderHeight = (this.pageCount * this.clientHeight) - this.scrollHeight;
+            this.placeholder.setAttribute("style", `height: ${placeholderHeight}px`);
+        });
     }
     render() {
         return `
