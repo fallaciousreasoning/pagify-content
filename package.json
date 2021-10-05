@@ -2,7 +2,7 @@
   "name": "pagify",
   "version": "1.0.0",
   "description": "A typescript utility for paginating a dom tree",
-  "main": "index.ts",
+  "main": "pagify-content.js",
   "scripts": {
     "dev": "tsc --watch",
     "build": "typescript",
