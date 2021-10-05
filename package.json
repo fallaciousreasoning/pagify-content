@@ -1,5 +1,5 @@
 {
-  "name": "pagify",
+  "name": "pagify-content",
   "version": "1.0.0",
   "description": "A typescript utility for paginating a dom tree",
   "main": "pagify-content.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "pagify"
+    "url": "https://github.com/fallaciousreasoning/pagify-content"
   },
   "author": "fallaciousreasoning",
   "license": "ISC",
