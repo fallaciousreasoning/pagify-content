@@ -11,5 +11,10 @@
     "url": "pagify"
   },
   "author": "fallaciousreasoning",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
 }
